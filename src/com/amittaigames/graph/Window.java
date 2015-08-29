@@ -10,13 +10,14 @@ public class Window {
 	private static int width;
 	private static int height;
 	private static int fps;
+	private static Core c;
 	private static long lastFrame;
 	
 	private static long lastFPS;
 	private static int LAST = 0;
 	private static int FPS;
 	
-	public static void init(String title, int width, int height, int fps) {
+	public static void init(String title, int width, int height, int fps, Core c) {
 		try {
 			Display.setDisplayMode(new DisplayMode(width, height));
 			Display.setTitle(title);
@@ -27,6 +28,7 @@ public class Window {
 		}
 		Window.width = width;
 		Window.height = height;
+		Window.c = c;
 		Window.fps = fps;
 		start();
 	}
@@ -35,8 +37,13 @@ public class Window {
 		initGL();
 		getDelta();
 		
+		c.init();
+		
 		while (!Display.isCloseRequested()) {
-			GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
+			int delta = getDelta();
+			
+			c.update(delta);
+			c.render(new Render());
 			
 			Display.update();
 			Display.sync(fps);
