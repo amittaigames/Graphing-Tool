@@ -99,7 +99,7 @@ public class Menu {
 					Point a = Point.list.get(0);
 					Point b = Point.list.get(1);
 					float slope = SlopeIntercept.findSlope(a, b);
-					float yint = SlopeIntercept.findInterceptY(a.getX(), a.getY(), slope);
+					float yint = SlopeIntercept.findInterceptY(a.getRealX(), a.getRealY(), slope);
 					Vector x = new Vector(0, yint);
 					Vector y = new Vector(Main.WIDTH, SlopeIntercept.solveForY(Main.WIDTH, slope, yint));
 					new Line(x, y);

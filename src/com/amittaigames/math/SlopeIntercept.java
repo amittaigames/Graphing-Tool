@@ -17,10 +17,10 @@ public class SlopeIntercept {
 	
 	public static float findSlope(Point a, Point b) {
 		float slope = 0;
-		float ax = a.getX();
-		float ay = a.getY();
-		float bx = b.getX();
-		float by = b.getY();
+		float ax = a.getRealX();
+		float ay = a.getRealY();
+		float bx = b.getRealX();
+		float by = b.getRealY();
 		slope = (by - ay) / (bx - ax);
 		return slope;
 	}

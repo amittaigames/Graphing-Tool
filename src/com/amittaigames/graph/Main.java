@@ -1,10 +1,5 @@
 package com.amittaigames.graph;
 
-import java.nio.IntBuffer;
-
-import org.lwjgl.BufferUtils;
-import org.lwjgl.LWJGLException;
-import org.lwjgl.input.Cursor;
 import org.lwjgl.input.Mouse;
 
 public class Main extends Core {
@@ -13,6 +8,8 @@ public class Main extends Core {
 	public static final int HEIGHT = 600;
 	
 	public static Graph graph;
+	
+	private static boolean mouseDown = false;
 	
 	public static void main(String[] args) {
 		Window.init("Graphing is Cool", WIDTH, HEIGHT, 60, new Main());
@@ -62,8 +59,12 @@ public class Main extends Core {
 	@Override
 	public void update(int delta) {
 		Mouse.updateCursor();
-		if (Mouse.isButtonDown(0)) {
+		if (Mouse.isButtonDown(0) && !mouseDown) {
 			new Point(Mouse.getX() / Graph.current.getWidthOffset(), Mouse.getY() / Graph.current.getHeightOffset());
+			mouseDown = true;
+		}
+		if (!Mouse.isButtonDown(0)) {
+			mouseDown = false;
 		}
 	}
 	
