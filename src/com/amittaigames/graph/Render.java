@@ -13,23 +13,44 @@ public class Render {
 		GL11.glColor3f(rgb(r), rgb(g), rgb(b));
 	}
 	
-	public void drawPoint(Point p) {
+	public void drawRect(float x, float y, float width, float height) {
 		GL11.glPushMatrix();
 		
-		GL11.glPointSize(Graph.current.getWidthOffset() / 2);
-		GL11.glBegin(GL11.GL_POINTS);
+		GL11.glLineWidth(1.5f);
+		GL11.glBegin(GL11.GL_LINES);
 		{
-			GL11.glVertex2f(p.getRealX(), p.getRealY());
+			GL11.glVertex2f(x, y);
+			GL11.glVertex2f(x + width, y);
+			GL11.glVertex2f(x + width, y + height);
+			GL11.glVertex2f(x, y + height);
 		}
 		GL11.glEnd();
 		
 		GL11.glPopMatrix();
 	}
 	
-	public void drawLine(Vector a, Vector b) {
+	public void drawPoint(Point p) {
 		GL11.glPushMatrix();
 		
-		GL11.glLineWidth(1);
+		float width = Graph.current.getWidthOffset() / 4f;
+		float height = Graph.current.getHeightOffset() / 4f;
+		
+		GL11.glBegin(GL11.GL_QUADS);
+		{
+			GL11.glVertex2f(p.getRealX() - width, p.getRealY() - height);
+			GL11.glVertex2f(p.getRealX() + width, p.getRealY() - height);
+			GL11.glVertex2f(p.getRealX() + width, p.getRealY() + height);
+			GL11.glVertex2f(p.getRealX() - width, p.getRealY() + height);
+		}
+		GL11.glEnd();
+		
+		GL11.glPopMatrix();
+	}
+	
+	public void drawLine(Vector a, Vector b, float size) {
+		GL11.glPushMatrix();
+		
+		GL11.glLineWidth(size);
 		GL11.glBegin(GL11.GL_LINES);
 		{
 			GL11.glVertex2f(a.getX(), a.getY());

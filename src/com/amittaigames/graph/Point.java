@@ -18,6 +18,10 @@ public class Point {
 		list.add(this);
 	}
 	
+	public Vector getVector() {
+		return v;
+	}
+	
 	public float getX() {
 		return x;
 	}

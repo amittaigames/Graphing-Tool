@@ -15,10 +15,10 @@ public class Graph {
 	
 	public void draw(Render r) {
 		for (float x = getWidthOffset(); x < Main.WIDTH; x += getWidthOffset()) {
-			r.drawLine(new Vector(x, 0), new Vector(x, Main.HEIGHT));
+			r.drawLine(new Vector(x, 0), new Vector(x, Main.HEIGHT), 1);
 		}
 		for (float y = getHeightOffset(); y < Main.HEIGHT; y += getHeightOffset()) {
-			r.drawLine(new Vector(0, y), new Vector(Main.WIDTH, y));
+			r.drawLine(new Vector(0, y), new Vector(Main.WIDTH, y), 1);
 		}
 	}
 	

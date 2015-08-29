@@ -30,6 +30,7 @@ public class Window {
 		Window.height = height;
 		Window.c = c;
 		Window.fps = fps;
+		Menu.init("Graph Menu", 300, 500, Display.getX() + width + 25, Display.getY());
 		start();
 	}
 	
